@@ -1,0 +1,44 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "name": "cat",
+      "img": "images/cat.png"
+    },
+    {
+      "id": 2,
+      "name": "dog",
+      "img": "images/dog.png"
+    },
+    {
+      "id": 3,
+      "name": "fox",
+      "img": "images/fox.png"
+    },
+    {
+      "id": 4,
+      "name": "lion",
+      "img": "images/lion.png"
+    },
+    {
+      "id": 5,
+      "name": "monkey",
+      "img": "images/monkey.png"
+    },
+    {
+      "id": 6,
+      "name": "owl",
+      "img": "images/owl.png"
+    },
+    {
+      "id": 7,
+      "name": "rabbit",
+      "img": "images/rabbit.png"
+    },
+    {
+      "id": 8,
+      "name": "tiger",
+      "img": "images/tiger.png"
+    }
+  ]
+}
