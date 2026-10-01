@@ -1,10 +1,11 @@
 export async function loadCards() {
-  const response = await fetch("./cards.json");
+  const response = await fetch("./js/data/cards.json");
   const data = await response.json();
 
   const gameCards = [...data.cards, ...data.cards];
 
-  return shuffle(gameCards);
+  shuffle(gameCards);
+  renderCards(gameCards);
 }
 
 function shuffle(array) {
@@ -14,4 +15,21 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function renderCards(gameCards) {
+  const container = document.querySelector(".cards-container");
+
+  gameCards.forEach((cards) => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+
+    const cardImage = document.createElement("img");
+    cardImage.classList.add("card-image");
+    cardImage.src = cards.img;
+    cardImage.alt = cards.name;
+
+    cardElement.append(cardImage);
+    container.append(cardElement);
+  });
 }
