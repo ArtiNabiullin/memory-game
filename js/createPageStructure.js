@@ -25,9 +25,21 @@ export function createPageStructure() {
   const cards = document.createElement("div");
   cards.className = "cards-container";
 
+  const state = document.createElement("div");
+  state.className = "state";
+
+  const timer = document.createElement("p");
+  timer.className = "timer";
+  timer.textContent = "0";
+
+  const score = document.createElement("p");
+  score.className = "score";
+  score.textContent = "0";
+
+  state.append(timer, score);
   headerContent.append(startGame, leaderboard);
   header.append(headerContent);
-  mainContent.append(title, cards);
+  mainContent.append(title, cards, state);
   body.append(header, mainContent);
 
   return body;
