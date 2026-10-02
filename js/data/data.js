@@ -1,13 +1,15 @@
-import { renderCards } from "../renderCards.js";
+let cardsData;
 
 export async function loadCards() {
-  const response = await fetch("./js/data/cards.json");
-  const data = await response.json();
+  if (!cardsData) {
+    const response = await fetch("./js/data/cards.json");
+    const data = await response.json();
+    cardsData = data.cards;
+  }
 
-  const gameCards = [...data.cards, ...data.cards];
+  const gameCards = [...cardsData, ...cardsData];
 
-  shuffle(gameCards);
-  renderCards(gameCards);
+  return shuffle(gameCards);
 }
 
 function shuffle(array) {
