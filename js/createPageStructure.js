@@ -28,6 +28,14 @@ export function createPageStructure() {
   const state = document.createElement("div");
   state.className = "state";
 
+  const message = document.createElement("p");
+  message.className = "game-message";
+  message.setAttribute("aria-live", "polite");
+
+  const moves = document.createElement("p");
+  moves.className = "moves";
+  moves.textContent = "Moves: 0";
+
   const timer = document.createElement("p");
   timer.className = "timer";
   timer.textContent = "0";
@@ -36,10 +44,10 @@ export function createPageStructure() {
   score.className = "score";
   score.textContent = "0";
 
-  state.append(timer, score);
+  state.append(moves, timer, score);
   headerContent.append(startGame, leaderboard);
   header.append(headerContent);
-  mainContent.append(title, cards, state);
+  mainContent.append(title, cards, message, state);
   body.append(header, mainContent);
 
   return body;

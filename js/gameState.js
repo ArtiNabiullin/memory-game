@@ -6,6 +6,7 @@ let isGameFinished = false;
 
 export function handleCardClick(cardElement, card) {
   if (
+    isGameFinished ||
     isLocked ||
     cardElement.classList.contains("active") ||
     cardElement.classList.contains("matched")
@@ -20,10 +21,23 @@ export function handleCardClick(cardElement, card) {
     return;
   }
 
+  moves += 1;
+  document.querySelector(".moves").textContent = `Moves: ${moves}`;
+
   if (selectedCard.id === card.id) {
     cardElement.classList.add("matched");
+    selectedCard.element.classList.add("matched");
     matchedPairs += 1;
     document.querySelector(".score").textContent = matchedPairs;
+
+    const totalPairs = document.querySelectorAll(".card").length / 2;
+
+    if (matchedPairs === totalPairs) {
+      isGameFinished = true;
+      document.querySelector(".game-message").textContent =
+        `You won ${moves} moves!`;
+    }
+
     selectedCard = null;
     return;
   }
