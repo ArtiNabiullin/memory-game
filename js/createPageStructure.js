@@ -8,11 +8,11 @@ export function createPageStructure() {
   headerContent.className = "header-menu";
 
   const startGame = document.createElement("div");
-  startGame.className = "header-start";
+  startGame.className = "header-start header-item";
   startGame.textContent = "New Game";
 
   const leaderboard = document.createElement("div");
-  leaderboard.className = "header-leaderboard";
+  leaderboard.className = "header-leaderboard header-item";
   leaderboard.textContent = "Leaderboard";
 
   const mainContent = document.createElement("main");
@@ -36,15 +36,11 @@ export function createPageStructure() {
   moves.className = "moves";
   moves.textContent = "Moves: 0";
 
-  const timer = document.createElement("p");
-  timer.className = "timer";
-  timer.textContent = "0";
-
   const score = document.createElement("p");
   score.className = "score";
-  score.textContent = "0";
+  score.textContent = "Pairs: 0/8";
 
-  state.append(moves, timer, score);
+  state.append(moves, score);
   headerContent.append(startGame, leaderboard);
   header.append(headerContent);
   mainContent.append(title, cards, message, state);

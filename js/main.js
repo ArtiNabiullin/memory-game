@@ -2,10 +2,15 @@ import { loadCards } from "./data/data.js";
 import { createPageStructure } from "./createPageStructure.js";
 import { renderCards } from "./renderCards.js";
 import { resetGameState } from "./gameState.js";
+import { showWinModal, showLeaderboardModal } from "./renderModal.js";
 
 createPageStructure();
 
 let isStarting = false;
+
+function onWin(moves) {
+  showWinModal(moves, startNewGame);
+}
 
 async function startNewGame() {
   if (isStarting) {
@@ -16,10 +21,9 @@ async function startNewGame() {
 
   try {
     const gameCards = await loadCards();
-
     resetGameState();
     document.querySelector(".cards-container").replaceChildren();
-    renderCards(gameCards);
+    renderCards(gameCards, onWin);
   } catch (error) {
     console.error("Could not start the game:", error);
   } finally {
@@ -28,5 +32,9 @@ async function startNewGame() {
 }
 
 document.querySelector(".header-start").addEventListener("click", startNewGame);
+
+document
+  .querySelector(".header-leaderboard")
+  .addEventListener("click", showLeaderboardModal);
 
 startNewGame();

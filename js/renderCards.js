@@ -1,13 +1,13 @@
 import { handleCardClick } from "./gameState.js";
 
-export function renderCards(gameCards) {
+export function renderCards(gameCards, onWin) {
   const container = document.querySelector(".cards-container");
 
   gameCards.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.addEventListener("click", () => {
-      handleCardClick(cardElement, card);
+      handleCardClick(cardElement, card, onWin);
     });
 
     const cardImage = document.createElement("img");

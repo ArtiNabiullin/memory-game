@@ -15,7 +15,18 @@ body {
   justify-content: flex-end;
   align-items: center;
   margin: 1rem;
-  gap: 6px;
+  gap: 2rem;
+
+  .header-item {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10%;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+  }
 }
 
 .main {
@@ -58,4 +69,5 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }

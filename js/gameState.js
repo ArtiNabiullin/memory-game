@@ -1,3 +1,5 @@
+import { saveResult } from "./storage.js";
+
 let moves = 0;
 let matchedPairs = 0;
 let selectedCard = null;
@@ -18,12 +20,11 @@ export function resetGameState() {
   isGameFinished = false;
 
   document.querySelector(".moves").textContent = "Moves: 0";
-  document.querySelector(".score").textContent = "0";
-  document.querySelector(".timer").textContent = "0";
+  document.querySelector(".score").textContent = "Pairs: 0/8";
   document.querySelector(".game-message").textContent = "";
 }
 
-export function handleCardClick(cardElement, card) {
+export function handleCardClick(cardElement, card, onWin) {
   if (
     isGameFinished ||
     isLocked ||
@@ -47,14 +48,14 @@ export function handleCardClick(cardElement, card) {
     cardElement.classList.add("matched");
     selectedCard.element.classList.add("matched");
     matchedPairs += 1;
-    document.querySelector(".score").textContent = matchedPairs;
+    document.querySelector(".score").textContent = `Pairs: ${matchedPairs}/8`;
 
     const totalPairs = document.querySelectorAll(".card").length / 2;
 
     if (matchedPairs === totalPairs) {
       isGameFinished = true;
-      document.querySelector(".game-message").textContent =
-        `You won ${moves} moves!`;
+      saveResult(moves);
+      onWin(moves);
     }
 
     selectedCard = null;
